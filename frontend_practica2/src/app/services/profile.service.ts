@@ -44,7 +44,6 @@ export class ProfileService {
   updateSocialNetworks(social_networks: any[]) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const body = JSON.stringify({ social_networks });
-    console.log(body);
     return this.http.put('http://127.0.0.1:8000/api/profile/edit/social-network', body, { headers });
   }
   
