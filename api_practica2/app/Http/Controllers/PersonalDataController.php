@@ -12,16 +12,12 @@ class PersonalDataController extends Controller
     public function update(Request $request)
     {
         try {
-            // Encontrar el usuario
             $user = User::findOrFail(1);
 
-            // Encontrar el registro en DataPersonal relacionado con el usuario
             $dataPersonal = PersonalData::where('user_id', $user->id)->first();
 
-            // Iniciar la transacción
             DB::beginTransaction();
 
-            // Validar los campos del formulario
             $fields = $request->validate([
                 'age' => 'sometimes',
                 'email' => 'sometimes',

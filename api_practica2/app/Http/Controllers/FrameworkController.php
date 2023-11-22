@@ -12,21 +12,16 @@ class FrameworkController extends Controller
     public function update(Request $request)
     {
         try {
-            // Encontrar el usuario
+
             $user = User::findOrFail(1);
-
             DB::beginTransaction();
-
             $frameworks = $request->input('frameworks');
-
             foreach ($frameworks as $framework) {
-                // Encontrar el registro en Interests relacionado con el usuario
                 $userFramework = Framework::where('user_id', $user->id)
                                         ->where('id', $framework['id'])
                                         ->first();
 
                 if ($userFramework) {
-                    // Si el interés existe, lo actualizamos
                     $userFramework->update($framework);
                 } else {
                     $user->framework()->create($framework);
@@ -34,7 +29,6 @@ class FrameworkController extends Controller
             }
 
             DB::commit();
-
             return response()->json([
                 'status' => 'success',
                 'message' => 'Interests updated successfully',

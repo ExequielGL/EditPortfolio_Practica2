@@ -12,23 +12,17 @@ class InterestController extends Controller
     public function update(Request $request)
     {
         try {
-            // Encontrar el usuario
             $user = User::findOrFail(1);
-
-            // Iniciar la transacción
             DB::beginTransaction();
 
-            // Supongamos que los intereses vienen en un array en el request
             $interests = $request->input('interests');
 
             foreach ($interests as $interest) {
-                // Encontrar el registro en Interests relacionado con el usuario
                 $userInterest = Interest::where('user_id', $user->id)
                                         ->where('id', $interest['id'])
                                         ->first();
 
                 if ($userInterest) {
-                    // Si el interés existe, lo actualizamos
                     $userInterest->update($interest);
                 } else {
                     $user->interest()->create($interest);
