@@ -1,0 +1,9 @@
+<ul class="list-disc ml-10 pb-3">
+    <li *ngFor="let interest of formulario.interests; let i = index">
+        <input *ngIf="editing" [(ngModel)]="formulario.interests[i].activity" type="text" class="text-center bg-transparent border border-red-500">
+        <span *ngIf="!editing">{{ interest.activity }}</span>
+    </li>
+</ul>
+<div class="flex justify-end ">
+    <button class="font-bold bg-blue-400 p-2 rounded-lg" (click)="toggleEdit()">{{ editing ? 'Guardar' : 'Editar' }}</button>
+</div>

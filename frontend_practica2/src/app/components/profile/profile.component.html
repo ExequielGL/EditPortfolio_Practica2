@@ -1,0 +1,17 @@
+<div *ngIf="profile">
+    <app-user [user]="profile.user"></app-user>
+    <div class="bg-gray-200 flex-1 py-2 min-w-fit">
+        <app-card title="Datos personales">
+            <app-personal-data [personalData]="profile.user.personal_data"></app-personal-data>
+        </app-card>
+        <app-card title="Intereses">
+            <app-interests [interests]="profile.user.interest"></app-interests>
+        </app-card>
+        <app-card title="Conocimientos en herramientas tecnológicas">
+            <app-frameworks [frameworks]="profile.user.framework"></app-frameworks>
+        </app-card>
+        <app-card title="Redes sociales">
+            <app-social-networks [socialNetworks]="profile.user.social_network"></app-social-networks>
+        </app-card>
+    </div>
+</div>

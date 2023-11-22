@@ -1,0 +1,12 @@
+<div class="flex flex-wrap">
+    <div *ngFor="let network of formulario.social_networks; let i = index" class="w-1/4 mb-4">
+        <div class="flex flex-col items-center justify-center">
+            <img class="w-1/4" [src]="network.path_img" alt="{{ network.name }}" >
+            <input *ngIf="editing" [(ngModel)]="formulario.social_networks[i].name" type="text" class="container text-center bg-transparent border border-red-500">
+            <span *ngIf="!editing"><a [href]="network.page_url" target="_blank" class="text-blue-500">{{ network.name }}</a></span>
+        </div>
+    </div>
+</div>
+<div class="flex justify-end ">
+    <button class="font-bold bg-blue-400 p-2 rounded-lg" (click)="toggleEdit()">{{ editing ? 'Guardar' : 'Editar' }}</button>
+</div>
